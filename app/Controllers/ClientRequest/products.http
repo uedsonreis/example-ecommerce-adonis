@@ -1,0 +1,24 @@
+GET http://localhost:3333/products
+
+###
+
+POST http://localhost:3333/products
+content-type: application/json
+
+{
+    "name": "iPhone XR",
+    "price": 7899.00,
+    "stock": 10,
+    "manufacturer_id": 1
+}
+
+###
+
+PUT http://localhost:3333/products/1
+content-type: application/json
+
+{ "price": 5999.00 }
+
+###
+
+DELETE http://localhost:3333/products/1
