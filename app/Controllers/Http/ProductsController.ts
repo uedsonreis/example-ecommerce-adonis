@@ -1,36 +1,40 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Product from 'App/Models/Product'
+import productService from '../../Services/ProductService'
+
+import { HttpCodes } from '../../Utils'
 
 export default class ProductsController {
 
-    public async index() {
-        return await Product.query().preload('manufacturer')
+    public async index({ response }: HttpContextContract) {
+        const products = await productService.findMany()
+        return response.status(HttpCodes.OK).json(products)
     }
 
-    public async store({ request }: HttpContextContract) {
-        const body = request.post()
-        return Product.create(body)
+    public async store({ request, response }: HttpContextContract) {
+        const body = request.post() as Product
+        const product = await productService.create(body)
+        return response.status(HttpCodes.Created).json(product)
     }
 
     public async update({request, response, params}: HttpContextContract) {
-        const product = await Product.find(params.id)
+        const body = request.post() as Product
+        const product = await productService.update(params.id, body)
+
         if (product) {
-            product.merge(request.only(['name', 'price', 'stock']))
-            product.save()
-            return product
+            return response.status(HttpCodes.OK).json(product)
         } else {
-            return response.status(404)
+            return response.status(HttpCodes.NotFound)
         }
     }
 
     public async delete({ response, params }: HttpContextContract) {
-        const product = await Product.find(params.id)
-        if (product) {
-            product.delete()
-            return response.status(204)
+        const wasDeleted = await productService.delete(params.id)
+        if (wasDeleted) {
+            return response.status(HttpCodes.NoContent)
         } else {
-            return response.status(404)
+            return response.status(HttpCodes.NotFound)
         }
     }
 

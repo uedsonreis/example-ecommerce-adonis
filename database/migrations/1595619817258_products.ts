@@ -7,8 +7,8 @@ export default class Products extends BaseSchema {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id')
             table.string('name')
-            table.string('price')
-            table.string('stock')
+            table.decimal('price')
+            table.integer('stock')
             table.integer('manufacturer_id').notNullable().references('id').inTable('manufacturers')
             table.timestamps(true)
         })

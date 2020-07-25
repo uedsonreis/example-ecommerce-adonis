@@ -6,19 +6,19 @@ POST http://localhost:3333/products
 content-type: application/json
 
 {
-    "name": "iPhone XR",
-    "price": 7899.00,
-    "stock": 10,
+    "name": "iPad Pro",
+    "price": 8899.00,
+    "stock": 20,
     "manufacturer_id": 1
 }
 
 ###
 
-PUT http://localhost:3333/products/1
+PUT http://localhost:3333/products/9
 content-type: application/json
 
-{ "price": 5999.00 }
+{ "price": 10999.00, "stock": 10 }
 
 ###
 
-DELETE http://localhost:3333/products/1
+DELETE http://localhost:3333/products/9

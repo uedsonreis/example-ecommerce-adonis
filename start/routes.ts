@@ -22,3 +22,5 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/products', 'ProductsController.index')
 Route.post('/products', 'ProductsController.store')
+Route.put('/products/:id', 'ProductsController.update')
+Route.delete('/products/:id', 'ProductsController.delete')
