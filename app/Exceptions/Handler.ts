@@ -15,9 +15,21 @@
 
 import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
-  constructor () {
-    super(Logger)
-  }
+    
+    constructor() {
+        super(Logger)
+    }
+
+    public async handle (error: any, ctx: HttpContextContract) {
+        console.error("@E code: ", error.code)
+        console.error("@E detail: ", error.detail)
+        console.error("@E table: ", error.table)
+        console.error("@E column: ", error.column)
+        console.error('@E message: ', error.message)
+    
+        return super.handle(error, ctx)
+      }
 }

@@ -7,9 +7,9 @@ content-type: application/json
 
 {
     "name": "iPad Pro",
-    "price": 8899.00,
+    "price": "8899.00",
     "stock": 20,
-    "manufacturer_id": 1
+    "manufacturerId": 1
 }
 
 ###
@@ -21,4 +21,4 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3333/products/9
+DELETE http://localhost:3333/products/17

@@ -1,11 +1,26 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { schema } from '@ioc:Adonis/Core/Validator'
 
 import Product from 'App/Models/Product'
-import productService from '../../Services/ProductService'
 
+import productService from '../../Services/ProductService'
 import { HttpCodes } from '../../Utils'
 
 export default class ProductsController {
+
+    private readonly saveValidate = {
+        schema: schema.create({
+            name: schema.string(),
+            price: schema.number(),
+            stock: schema.number(),
+            manufacturerId: schema.number()
+        }),
+        messages: {
+            'name.required': 'Name is required to save a new Product',
+            'price.required': 'Price is required to save a new Product',
+            'price.number': 'Price must be a number',
+        }
+    }
 
     public async index({ response }: HttpContextContract) {
         const products = await productService.findMany()
@@ -13,7 +28,7 @@ export default class ProductsController {
     }
 
     public async store({ request, response }: HttpContextContract) {
-        const body = request.post() as Product
+        const body = await request.validate(this.saveValidate) as Product
         const product = await productService.create(body)
         return response.status(HttpCodes.Created).json(product)
     }
