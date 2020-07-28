@@ -4,5 +4,10 @@ content-type: application/json
 
 {
     "email": "admin",
-    "password": "admin1"
+    "password": "admin"
 }
+
+###
+
+GET http://localhost:3333/logged
+Authorization: Bearer NA.ZaO6cGGlYGQr-nsNlZJ852_zl49OqiJHEFV2W-bj4TMocItVlg35TDqU1KKp

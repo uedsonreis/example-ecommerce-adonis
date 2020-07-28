@@ -10,4 +10,9 @@ export default class AuthController {
         return token.toJSON()
     }
 
+    public async logged({ auth }: HttpContextContract) {
+        await auth.use('api').authenticate()
+        return auth.use('api').user
+    }
+
 }

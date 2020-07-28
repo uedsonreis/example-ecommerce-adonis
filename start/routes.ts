@@ -25,4 +25,8 @@ Route.post('/products', 'ProductsController.store')
 Route.put('/products/:id', 'ProductsController.update')
 Route.delete('/products/:id', 'ProductsController.delete')
 
+// Route.post('/customers', 'CustomersController.store')
+Route.post('/users', 'UsersController.store')
+
 Route.post('/login', 'AuthController.login')
+Route.get('/logged', 'AuthController.logged')
