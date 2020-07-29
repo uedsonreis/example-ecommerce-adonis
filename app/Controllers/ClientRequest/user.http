@@ -1,3 +1,17 @@
+GET http://localhost:3333/users
+
+###
+
+POST http://localhost:3333/users
+content-type: application/json
+Authorization: Bearer NQ.HTAq45GRHwW3GockmUej4cLPKj3ILRz-2aUgIggl2ymNPJFsXMlqVotb04a-
+
+{
+    "email": "uedson",
+    "password": "123"
+}
+
+###
 
 POST http://localhost:3333/login
 content-type: application/json
@@ -10,4 +24,9 @@ content-type: application/json
 ###
 
 GET http://localhost:3333/logged
-Authorization: Bearer NA.ZaO6cGGlYGQr-nsNlZJ852_zl49OqiJHEFV2W-bj4TMocItVlg35TDqU1KKp
+Authorization: Bearer NQ.HTAq45GRHwW3GockmUej4cLPKj3ILRz-2aUgIggl2ymNPJFsXMlqVotb04a-
+
+###
+
+DELETE http://localhost:3333/login
+Authorization: Bearer NQ.HTAq45GRHwW3GockmUej4cLPKj3ILRz-2aUgIggl2ymNPJFsXMlqVotb04a-
