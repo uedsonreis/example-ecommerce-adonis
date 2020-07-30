@@ -25,8 +25,9 @@ Route.post('/products', 'ProductsController.store').middleware('auth')
 Route.put('/products/:id', 'ProductsController.update').middleware('auth')
 Route.delete('/products/:id', 'ProductsController.delete').middleware('auth')
 
-// Route.post('/customers', 'CustomersController.store')
-Route.get('/users', 'UsersController.index')
+Route.post('/customers', 'CustomersController.store')
+
+Route.get('/users', 'UsersController.index').middleware('auth')
 Route.post('/users', 'UsersController.store').middleware('auth')
 
 Route.get('/logged', 'AuthController.logged')

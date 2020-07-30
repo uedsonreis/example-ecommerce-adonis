@@ -24,12 +24,8 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     }
 
     public async handle (error: any, ctx: HttpContextContract) {
-        console.error("@E code: ", error.code)
-        console.error("@E detail: ", error.detail)
-        console.error("@E table: ", error.table)
-        console.error("@E column: ", error.column)
-        console.error('@E message: ', error.message)
-    
+        console.error("App/Exceptions/Handler.ts => ExceptionHandler.handle")
+        console.error("Error: ", error)
         return super.handle(error, ctx)
       }
 }

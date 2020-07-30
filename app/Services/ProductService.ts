@@ -1,33 +1,24 @@
+import { Repository } from 'App/Repositories'
 import Product from 'App/Models/Product'
 
-class ProductService {
+export class ProductService {
 
-    public async findMany() {
-        return await Product.query().preload('manufacturer')
+    constructor(private repository: Repository<Product>) {}
+
+    public async findMany(filter?: Product) {
+        return await this.repository.findMany({ filter, preload: 'manufacturer' })
     }
 
     public async create(product: Product) {
-        return await Product.create(product)
+        return await this.repository.create(product)
     }
 
     public async update(id: number, fieldsToUpdate: Product) {
-        const product = await Product.find(id)
-        if (product) {
-            product.merge(fieldsToUpdate)
-            return await product.save()
-        }
-        return null
+        return await this.repository.update(id, fieldsToUpdate)
     }
 
     public async delete(id: number) {
-        const product = await Product.find(id)
-        if (product) {
-            await product.delete()
-            return true
-        }
-        return false
+        return await this.repository.delete(id)
     }
 
 }
-
-export default new ProductService()

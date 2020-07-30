@@ -1,15 +1,15 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import { saveValidate } from '../../Validations/ProductValidation'
+import { saveValidate } from 'App/Validations/ProductValidation'
 import Product from 'App/Models/Product'
 
-import productService from '../../Services/ProductService'
-import { HttpCodes } from '../../Utils'
+import { productService } from 'App/Services'
+import { HttpCodes } from 'App/Utils'
 
 export default class ProductsController {
 
-    public async index({ response }: HttpContextContract) {
-        const products = await productService.findMany()
+    public async index({ request, response }: HttpContextContract) {
+        const products = await productService.findMany(request.get() as Product)
         return response.status(HttpCodes.OK).json(products)
     }
 
