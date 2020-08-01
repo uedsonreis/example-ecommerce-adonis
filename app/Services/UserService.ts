@@ -6,6 +6,10 @@ export class UserService {
 
     constructor(private repository: Repository<User>) {}
 
+    public async findOne(email: string) {
+        return await this.repository.findOne("email", email)
+    }
+
     public async findMany(filter?: User) {
         return await this.repository.findMany({ filter })
     }

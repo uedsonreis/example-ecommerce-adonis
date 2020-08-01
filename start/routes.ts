@@ -20,6 +20,10 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+Route.get('/sales/orders', 'SalesOrdersController.index').middleware('auth')
+Route.post('/sales/orders', 'SalesOrdersController.store').middleware('auth')
+Route.delete('/sales/orders/:id', 'SalesOrdersController.delete').middleware('auth')
+
 Route.get('/products', 'ProductsController.index')
 Route.post('/products', 'ProductsController.store').middleware('auth')
 Route.put('/products/:id', 'ProductsController.update').middleware('auth')

@@ -1,0 +1,33 @@
+POST http://localhost:3333/login
+content-type: application/json
+
+{
+    "email": "cicrano",
+    "password": "123"
+}
+
+###
+
+GET http://localhost:3333/sales/orders
+Authorization: Bearer MTE.nF0M2Tsn3Hcj128ssc1A4WyQeA76V95uwaZSllstam3U8qFix8Oma6s8w685
+
+###
+
+GET http://localhost:3333/products
+
+###
+POST http://localhost:3333/sales/orders
+Authorization: Bearer MTE.nF0M2Tsn3Hcj128ssc1A4WyQeA76V95uwaZSllstam3U8qFix8Oma6s8w685
+content-type: application/json
+
+{
+    "items": [
+        { "productId": 1, "price": 4800, "amount": 2 },
+        { "productId": 3, "price": 5600, "amount": 1 }
+    ]
+}
+
+###
+
+DELETE http://localhost:3333/sales/orders/2
+Authorization: Bearer MTE.nF0M2Tsn3Hcj128ssc1A4WyQeA76V95uwaZSllstam3U8qFix8Oma6s8w685

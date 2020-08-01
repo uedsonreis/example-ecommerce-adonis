@@ -14,7 +14,7 @@ export class Repository<M> {
         return (obj) ? obj as any as M : null
     }
     
-    public async findMany(options?: { filter?: M, preload?: any }): Promise<M[]> {
+    public async findMany(options?: { filter?: any, preload?: any }): Promise<M[]> {
         let array: any[]
 
         if (options) {

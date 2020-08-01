@@ -13,4 +13,10 @@ export class CustomerService {
         return { customer: customerDB, user }
     }
 
+    public async get(email: string) {
+        const user = await this.userService.findOne(email)
+        if (!user) return null
+        return await this.repository.findOne("userId", user.id)
+    }
+
 }

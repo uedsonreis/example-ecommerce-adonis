@@ -26,3 +26,15 @@ export class OutOfStockException extends Exception {
     }
 
 }
+
+export class ProductDoesNotExistException extends Exception {
+
+    constructor(productId: number) {
+        super(productId.toString(), HttpCodes.BadRequest)
+    }
+
+    public async handle(error: this, { response }: HttpContextContract) {
+        return response.status(error.status).send(`The product (id: ${error.message.toLowerCase()}) does not exist.`)
+    }
+
+}

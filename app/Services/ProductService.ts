@@ -5,6 +5,10 @@ export class ProductService {
 
     constructor(private repository: Repository<Product>) {}
 
+    public async get(id: number) {
+        return await this.repository.findById(id)
+    }
+
     public async findMany(filter?: Product) {
         return await this.repository.findMany({ filter, preload: 'manufacturer' })
     }
