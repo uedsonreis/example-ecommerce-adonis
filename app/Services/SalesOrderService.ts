@@ -45,8 +45,8 @@ export class SalesOrderService {
                 await this.productService.update(product.id, { stock: product.stock - item.amount } as Product)
                 await this.itemRepository.create({ ...item, salesOrderId: salesOrder.id })
             }
-
             trx.commit()
+            
         } catch (error) {
             trx.rollback()
             throw new Error(error)
