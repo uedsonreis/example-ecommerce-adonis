@@ -18,6 +18,8 @@ export const productService = new ProductService(new Repository<Product>(Product
 export const customerService = new CustomerService(new Repository<Customer>(Customer), userService)
 
 export const salesOrderService = new SalesOrderService(
-    new Repository<SalesOrder>(SalesOrder), new Repository<Item>(Item),
-    customerService, productService
+    new Repository<SalesOrder>(SalesOrder),
+    new Repository<Item>(Item),
+    customerService,
+    productService
 )
