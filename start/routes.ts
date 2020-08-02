@@ -34,6 +34,6 @@ Route.post('/customers', 'CustomersController.store')
 Route.get('/users', 'UsersController.index').middleware('auth')
 Route.post('/users', 'UsersController.store').middleware('auth')
 
-Route.get('/logged', 'AuthController.logged')
+Route.get('/login', 'AuthController.logged')
 Route.post('/login', 'AuthController.login')
 Route.delete('/login', 'AuthController.logout')

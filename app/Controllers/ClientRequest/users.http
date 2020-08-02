@@ -1,5 +1,5 @@
 GET http://localhost:3333/users
-Authorization: Bearer Ng.fYVw9U-X50lKhMZECwrAGjXoy8AJL3gDRiT7UUYyVAN47GZkVzxVf34sJFp3
+Authorization: Bearer MQ.oGNsObjlOpr_OlmGFdOuPrwHZWha0VIJ6UdIjvLZVYnidl1TzCH2PnAl0jT1
 
 ###
 
@@ -24,7 +24,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3333/logged
+GET http://localhost:3333/login
 Authorization: Bearer OA.yY-wNkt-FnnuA5claf0XltsCrortesCA119adfNeSJmZtGL2EZ2ko8W2pVNw
 
 ###
