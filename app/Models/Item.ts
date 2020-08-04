@@ -16,24 +16,24 @@ export default class Item extends BaseModel {
     public amount: number
 
 
-    @column()
+    @column({ serializeAs: 'productId' })
     public productId: number
 
     @belongsTo(() => Product)
     public product: BelongsTo<typeof Product>
 
 
-    @column()
+    @column({ serializeAs: 'salesOrderId' })
     public salesOrderId: number
 
     @belongsTo(() => SalesOrder)
     public salesOrder: BelongsTo<typeof SalesOrder>
 
 
-    @column.dateTime({ autoCreate: true })
+    @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
     public createdAt: DateTime
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt' })
     public updatedAt: DateTime
 
 }

@@ -20,13 +20,13 @@ export default class User extends BaseModel {
     @column()
     public admin: boolean
 
-    @column()
+    @column({ serializeAs: 'rememberMeToken' })
     public rememberMeToken?: string
 
-    @column.dateTime({ autoCreate: true })
+    @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
     public createdAt: DateTime
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt' })
     public updatedAt: DateTime
 
     @beforeSave()

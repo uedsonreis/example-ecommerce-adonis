@@ -15,15 +15,15 @@ export default class Product extends BaseModel {
     @column()
     public stock: number
 
-    @column()
+    @column({ serializeAs: 'manufacturerId' })
     public manufacturerId: number
 
     @belongsTo(() => Manufacturer)
     public manufacturer: BelongsTo<typeof Manufacturer>
 
-    @column.dateTime({ autoCreate: true })
+    @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
     public createdAt: DateTime
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt' })
     public updatedAt: DateTime
 }

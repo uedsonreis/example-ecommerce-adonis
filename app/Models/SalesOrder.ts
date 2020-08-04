@@ -12,7 +12,7 @@ export default class SalesOrder extends BaseModel {
     @column()
     public total: number
 
-    @column()
+    @column({ serializeAs: 'customerId' })
     public customerId: number
 
     @belongsTo(() => Customer)
@@ -21,10 +21,10 @@ export default class SalesOrder extends BaseModel {
     @hasMany(() => Item)
     public items: HasMany<typeof Item>
 
-    @column.dateTime({ autoCreate: true })
+    @column.dateTime({ autoCreate: true, serializeAs: 'createdAt' })
     public createdAt: DateTime
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: 'updatedAt' })
     public updatedAt: DateTime
 
 }
