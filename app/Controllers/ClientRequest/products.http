@@ -1,4 +1,4 @@
-GET http://localhost:3333/products
+GET http://localhost:3333/products?manufacturerId=1&stock=5
 
 ###
 
