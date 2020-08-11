@@ -49,10 +49,10 @@ export class SalesOrderService {
             
         } catch (error) {
             trx.rollback()
-            throw new Error(error)
+            throw new Error(error.message)
         }
 
-        return await this.salesOrderRepository.findMany({ filter: { id: salesOrder.id }, preload: 'items' })[0]
+        return salesOrder
     }
 
     public async findMany(user: User, filter?: SalesOrder): Promise<SalesOrder[]> {
@@ -62,6 +62,8 @@ export class SalesOrderService {
     }
 
     public async delete(user: User, id: number) {
+        if (!user || !user.email) return false
+
         const salesOrder = await this.salesOrderRepository.findById(id)
         if (!salesOrder) return false
         

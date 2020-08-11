@@ -9,7 +9,7 @@ export default class Items extends BaseSchema {
             table.float('price')
             table.integer('amount')
             table.integer('product_id').notNullable().references('id').inTable('products')
-            table.integer('sales_order_id').notNullable().references('id').inTable('sales_orders')
+            table.integer('sales_order_id').notNullable().references('id').inTable('sales_orders').onDelete('CASCADE')
             table.timestamps(true)
         })
     }

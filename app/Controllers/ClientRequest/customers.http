@@ -3,9 +3,9 @@ POST http://localhost:3333/customers
 content-type: application/json
 
 {
-    "email": "cicrano",
+    "email": "jose",
     "password": "123",
-    "name": "Cicrano de Tal",
+    "name": "José da Silva",
     "age": 27,
     "address": "Endereço B"
 }

@@ -5,11 +5,10 @@ Authorization: Bearer MQ.oGNsObjlOpr_OlmGFdOuPrwHZWha0VIJ6UdIjvLZVYnidl1TzCH2PnA
 
 POST http://localhost:3333/users
 content-type: application/json
-Authorization: Bearer OA.yY-wNkt-FnnuA5claf0XltsCrortesCA119adfNeSJmZtGL2EZ2ko8W2pVNw
 
 {
     "email": "uedson",
-    "password": "123"
+    "password": "reis"
 }
 
 ###
@@ -18,8 +17,8 @@ POST http://localhost:3333/login
 content-type: application/json
 
 {
-    "email": "admin",
-    "password": "admin"
+    "email": "joao",
+    "password": "123"
 }
 
 ###

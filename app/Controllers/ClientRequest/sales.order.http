@@ -9,7 +9,7 @@ content-type: application/json
 ###
 
 GET http://localhost:3333/sales/orders
-Authorization: Bearer MTE.nF0M2Tsn3Hcj128ssc1A4WyQeA76V95uwaZSllstam3U8qFix8Oma6s8w685
+Authorization: Bearer NA.YcQt5SZQvIEchsUEnHU0D-0GZ6-GGt6gmSjQsEIZ3m9jc1gHPf7xvFWrgsAv
 
 ###
 
@@ -17,7 +17,7 @@ GET http://localhost:3333/products
 
 ###
 POST http://localhost:3333/sales/orders
-Authorization: Bearer MTE.nF0M2Tsn3Hcj128ssc1A4WyQeA76V95uwaZSllstam3U8qFix8Oma6s8w685
+Authorization: Bearer NA.YcQt5SZQvIEchsUEnHU0D-0GZ6-GGt6gmSjQsEIZ3m9jc1gHPf7xvFWrgsAv
 content-type: application/json
 
 {

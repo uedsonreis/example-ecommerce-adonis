@@ -11,17 +11,14 @@ test.group('Sales Orders Controller', () => {
     test('Sales Orders list', async (assert) => {
         console.log('List all sales orders without login')
         await supertest(BASE_URL).get('/sales/orders').expect(HttpCodes.Unauthorized)
-        
-        const admin = { email: 'admin', password: 'admin' }
-        const { body } = await supertest(BASE_URL).post('/login').send(admin).expect(HttpCodes.OK)
+
+        console.log('Login with a customer')
+        const customer = { email: 'joao', password: '123' }
+        const { body } = await supertest(BASE_URL).post('/login').send(customer).expect(HttpCodes.OK)
         const token = `Bearer ${body.token}`
 
         console.log('List all sales orders')
-        let response = await supertest(BASE_URL).get('/sales/orders').set('Authorization', token).expect(HttpCodes.OK)
-        assert.isArray(response.body)
-        
-        console.log('List filtered sales orders')
-        response = await supertest(BASE_URL).get('/sales/orders').set('Authorization', token).query({ productId: 1 }).expect(HttpCodes.OK)
+        const response = await supertest(BASE_URL).get('/sales/orders').set('Authorization', token).expect(HttpCodes.OK)
         assert.isArray(response.body)
     })
 
@@ -32,25 +29,33 @@ test.group('Sales Orders Controller', () => {
         
         console.log('Login with admin')
         const admin = { email: 'admin', password: 'admin' }
-        const { body } = await supertest(BASE_URL).post('/login').send(admin).expect(HttpCodes.OK)
-        const token = `Bearer ${body.token}`
+        let response = await supertest(BASE_URL).post('/login').send(admin).expect(HttpCodes.OK)
+        let token = `Bearer ${response.body.token}`
         
-        console.log('Create a new product')
-        const response = await supertest(BASE_URL).post('/sales/orders').set('Authorization', token).send(items).expect(HttpCodes.Created)
+        console.log('Create a new sales order')
+        await supertest(BASE_URL).post('/sales/orders').set('Authorization', token).send({ items }).expect(HttpCodes.InternalError)
+
+        console.log('Login with a customer')
+        const customer = { email: 'joao', password: '123' }
+        const { body } = await supertest(BASE_URL).post('/login').send(customer).expect(HttpCodes.OK)
+        token = `Bearer ${body.token}`
+        
+        console.log('Create a new sales order')
+        response = await supertest(BASE_URL).post('/sales/orders').set('Authorization', token).send({ items }).expect(HttpCodes.Created)
         assert.property(response.body, 'id')
         assert.typeOf(response.body.id, 'number')
 
-        console.log('Create a product without manufacturer')
+        console.log('Create a sales order without a product')
         items = [{ price: 1000, amount: 1 }] as Item[]
-        await supertest(BASE_URL).post('/products').set('Authorization', token).send(items).expect(HttpCodes.Unprocessable)
+        await supertest(BASE_URL).post('/products').set('Authorization', token).send({ items }).expect(HttpCodes.Unprocessable)
     })
 
-    test('Delete product', async () => {
+    test('Delete sales order', async () => {
         console.log('Delete a sales order without login')
         await supertest(BASE_URL).delete('/sales/orders/1').expect(HttpCodes.Unauthorized)
         
-        console.log('Login with admin')
-        const admin = { email: 'admin', password: 'admin' }
+        console.log('Login with joao')
+        const admin = { email: 'joao', password: '123' }
         const { body } = await supertest(BASE_URL).post('/login').send(admin).expect(HttpCodes.OK)
         const token = `Bearer ${body.token}`
         

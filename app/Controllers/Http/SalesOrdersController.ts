@@ -22,8 +22,13 @@ export default class SalesOrdersController {
         return response.status(HttpCodes.Created).send(salesOrder)
     }
 
-    public async delete({ params, auth }: HttpContextContract) {
-        return await salesOrderService.delete(auth.user as User, params.id)
+    public async delete({ params, auth, response }: HttpContextContract) {
+        const wasDeleted = await salesOrderService.delete(auth.user as User, params.id)
+        if (wasDeleted) {
+            return response.status(HttpCodes.NoContent)
+        } else {
+            return response.status(HttpCodes.NotFound)
+        }
     }
 
 }
